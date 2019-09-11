@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: devicemanagement
+  labels:
+    name: devicemanagement
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: devicemanagement
+    spec:
+      containers:
+      - name: devicemanagement
+        image: ranjanprj/devicemanagement:latest
+        env:
+        - name: FLASK_ENV
+          value: "development"
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-credentials
+              key: user
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-credentials
+              key: password
+      restartPolicy: Always

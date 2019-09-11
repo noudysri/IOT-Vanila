@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: minikube-ingress
+  annotations:
+spec:
+  rules:
+  - host: hello.world
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: ui
+          servicePort: 8080
+      - path: /usermanagement
+        backend:
+          serviceName: usermanagement
+          servicePort: 5001
+      - path: /devicemanagement
+        backend:
+          serviceName: devicemanagement
+          servicePort: 5002

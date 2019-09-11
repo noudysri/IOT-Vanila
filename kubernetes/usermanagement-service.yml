@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: usermanagement
+  labels:
+    service: usermanagement
+spec:
+  selector:
+    app: usermanagement
+  ports:
+  - port: 5001
+    targetPort: 5000
